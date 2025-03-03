@@ -1,0 +1,6 @@
+{
+    "watch": ["server.js", "scraper.js"],
+    "ignore": ["scraped_data/*"],
+    "ext": "js,json"
+  }
+  

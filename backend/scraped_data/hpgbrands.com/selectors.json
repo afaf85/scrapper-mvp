@@ -1,0 +1,23 @@
+[
+  {
+    "type": "image",
+    "selector": "img",
+    "value": {
+      "src": "https://cdn11.bigcommerce.com/s-3kam1hz68o/images/stencil/1024x1024/products/63677/165887/8359_5__58815.1734052547.jpg?cache_bust=1740973840621",
+      "alt": "Large Non-Woven Shopping Tote",
+      "role": "presentation",
+      "class": null,
+      "id": null
+    }
+  },
+  {
+    "type": "title",
+    "selector": "h1.product-title",
+    "value": "8359 | Large Non-Woven Shopping Tote"
+  },
+  {
+    "type": "description",
+    "selector": "div.product-description.user-content.has-excerpt.loaded",
+    "value": "Hit the beach, bookstore or corner grocery with all your gear in tow in these cool and colorful festival style shopping tote bag. This 15\" x 20\" x 5 3/4\" carry is made of 80GSM non-woven polypropylene material with a trapezoidal shape, 5 1/2\" gusset for added storage space, hook and loop..."
+  }
+]

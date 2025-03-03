@@ -1,0 +1,39 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Run Server",
+      "program": "${workspaceFolder}/backend/server.js",
+      "env": {
+        "PORT": "3000"
+      },
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "type": "node",
+      "request": "attach",
+      "name": "Attach Debugger",
+      "port": 9229
+    },
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Debug React App",
+      "url": "http://localhost:5000",
+      "webRoot": "${workspaceFolder}/frontend/src"
+    },
+    {
+      "type": "pwa-node",
+      "request": "launch",
+      "name": "Start React Frontend",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["start"],
+      "cwd": "${workspaceFolder}/frontend",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen"
+    }
+  ]
+}

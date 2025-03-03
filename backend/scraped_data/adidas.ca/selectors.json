@@ -1,0 +1,18 @@
+[
+  {
+    "type": "image",
+    "selector": "img",
+    "value": {
+      "src": "https://assets.adidas.com/images/w_600,f_auto,q_auto/1a6c516af64c4832829354533392a713_9366/Superstar_II_Shoes_Black_JI0079_01_standard.jpg",
+      "alt": "Black Superstar II Shoes",
+      "role": null,
+      "class": null,
+      "id": null
+    }
+  },
+  {
+    "type": "title",
+    "selector": "span",
+    "value": "SUPERSTAR II SHOES"
+  }
+]

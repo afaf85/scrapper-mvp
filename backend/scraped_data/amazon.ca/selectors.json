@@ -1,0 +1,15 @@
+[
+  {
+    "type": "title",
+    "selector": "span#productTitle",
+    "value": "Learning Toys Talking Flash Cards for 1 2 3 Year Old Boys and Girls, 224 Sight Words for Toddler Educational Preschool Toys Gifts, Speech Therapy Toys, Autism Sensory Toys for Autistic Children, Blue"
+  },
+  {
+    "type": "image",
+    "selector": "div#magnifierLens",
+    "value": {
+      "backgroundImage": "https://m.media-amazon.com/images/G/15/apparel/rcxgs/tile._CB483369412_.gif",
+      "text": "No text available"
+    }
+  }
+]
