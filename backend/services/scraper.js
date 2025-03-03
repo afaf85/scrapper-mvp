@@ -3,6 +3,41 @@ import StealthPlugin from "puppeteer-extra-plugin-stealth";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import pg from "pg";
+
+// 🔹 Connect to Heroku Postgres
+const pool = new pg.Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+        rejectUnauthorized: false, // Required for Heroku Postgres
+    },
+});
+
+// 🔹 Function to insert scraped data into the database
+async function saveToDatabase(url, data) {
+    const client = await pool.connect();
+    try {
+        await client.query(`
+            CREATE TABLE IF NOT EXISTS scraped_data (
+                id SERIAL PRIMARY KEY,
+                url TEXT NOT NULL,
+                content JSONB NOT NULL,
+                scraped_at TIMESTAMP DEFAULT NOW()
+            );
+        `);
+
+        await client.query(
+            `INSERT INTO scraped_data (url, content) VALUES ($1, $2)`,
+            [url, JSON.stringify(data)]
+        );
+
+        console.log(`✅ Data saved to Postgres for ${url}`);
+    } catch (err) {
+        console.error("❌ Database error:", err);
+    } finally {
+        client.release();
+    }
+}
 
 // ✅ Define __dirname manually for ES Modules
 const __filename = fileURLToPath(import.meta.url);
@@ -389,7 +424,7 @@ function sanitizeFilename(url) {
  */
 async function scrapeWebsite(url, mode = "manual") {
     const browser = await puppeteer.launch({
-        headless: false,
+        headless: "new",
         protocolTimeout: 120000,
         args: [
             "--no-sandbox",
@@ -477,11 +512,12 @@ async function scrapeWebsite(url, mode = "manual") {
 
         // ✅ Save extracted data with values
         if (selectedElements.length > 0) {
-            fs.writeFileSync(selectorsPath, JSON.stringify(selectedElements, null, 2));
-            console.log(`✅ Data saved successfully: ${selectorsPath}`);
+            await saveToDatabase(url, selectedElements);  // ✅ Save to Heroku Postgres
+            console.log(`✅ Data saved to database for: ${url}`);
         } else {
             console.log(`⚠️ No elements selected, skipping save.`);
         }
+        
 
         return selectedElements;
     } catch (error) {
